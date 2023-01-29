@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/header') %>
+</head>
+<body class="hold-transition register-page">
+  <div class="register-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <img src="/images/solevivor_header.jpg" alt="Solevivor Header Logo" width="190" height="90">
+      </div>
+      <div class="card-body">
+        <h5 class="login-box-msg mb-4">Login to your Solevivor account</h5>
+  
+        <!-- Errrors -->
+        <% if (typeof (error) !== 'undefined'){ %>
+          <div class="text-danger text-start h6 font-weight-bold">
+            <%= error %>
+          </div>
+        <% } %>
+        <form action="/loginAcc" method="POST">
+          <div class="input-group mb-3">
+            <input id="username" type="text" class="form-control" name="username" autocomplete="username" placeholder="Username">
+          </div>
+
+          <div class="input-group mb-3">
+            <input data-toggle="password" id="password" type="password" class="form-control" name="password" autocomplete="new-password" placeholder="Password">
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block mb-5">Login</button>
+            </div>
+          </div>
+        </form>
+  
+        <div class="mb-4">
+          Don't have an account? <a href="/register" class="text-center">Create</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scripts -->
+  <%- include('../partials/scripts') %>
+</body>
+</html>

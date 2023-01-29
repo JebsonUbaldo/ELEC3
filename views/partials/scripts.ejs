@@ -1,0 +1,170 @@
+<!-- jQuery -->
+<script src="/template/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/template/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="/template/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="/template/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="/template/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="/template/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="/template/plugins/moment/moment.min.js"></script>
+<script src="/template/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="/template/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/template/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/template/dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="/template/dist/js/pages/dashboard.js"></script>
+
+<script>
+  let data = [
+    {
+      item: 'Non-Teaching Staff',
+      subitems: ['Cashier Office','Clinic','Guidance and Counselling Office','Library','Records Office','Registrar Office', 'Student Services Office', 'Supply Office','Supreme Student Council'],
+    },
+    {
+      item: 'Teaching Staff',
+      subitems: ['Architecture Department', 'Civil Engineering Department', 'Computer Engineering Department', 'Electrical Engineering Department', 'Mechanical Engineering Department', 'Teacher Education Department', 'English Language Department', 'General Education Department', 'Physical Education and NSTP Department', 'Mathematics and Natural Sciences Department', 'Information Technology Department']
+    },
+    {
+      item: 'Department Chair',
+      subitems: ['Architecture Department', 'Civil Engineering Department', 'Computer Engineering Department', 'Electrical Engineering Department', 'Mechanical Engineering Department', 'Teacher Education Department', 'English Language Department', 'General Education Department', 'Physical Education and NSTP Department', 'Mathematics and Natural Sciences Department', 'Information Technology Department']
+    },
+    {
+      item: 'College Dean',
+      subitems: ['College of Arts and Education', 'College of Computing', 'College of Engineering and Architecture']
+    },
+  ];
+  
+  
+  window.onload = function() {
+    var itemSel = document.getElementById("type");
+    var subitemSel = document.getElementById("designation");
+  
+    for (var x in data) {
+      itemSel.options[itemSel.options.length] = new Option(data[x].item, x);
+    }
+    itemSel.onchange = function() {
+      //empty 
+      subitemSel.length = 1;
+      //display correct values
+      for (var y of data[this.value].subitems) {
+        subitemSel.options[subitemSel.options.length] = new Option(y, y);
+      }
+    }
+  }
+</script>
+
+
+<!-- DataTables  & Plugins -->
+<script src="/template/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/template/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/template/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/template/plugins/jszip/jszip.min.js"></script>
+<script src="/template/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/template/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/template/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/template/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/template/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+    //   "buttons": [
+    //     {
+    //       "extend":"copy",
+    //       "messageTop": 'List of Available Items',
+    //       "exportOptions": {
+    //         "columns": [ 0, 1, 2, 3, 4, 5 ]
+    //       }
+    //     }, 
+    //     {
+    //       "extend":"csv",
+    //       "messageTop": 'List of Available Items',
+    //       "exportOptions": {
+    //         "columns": [ 0, 1, 2, 3, 4, 5 ]
+    //       }
+    //     },
+    //     {
+    //       "extend":"excel",
+    //       "messageTop": 'List of Available Items',
+    //       "exportOptions": {
+    //         "columns": [ 0, 1, 2, 3, 4, 5 ]
+    //       }
+    //     }, 
+    //     {
+    //       "extend":"pdf",
+    //       "messageTop": 'List of Available Items',
+    //       "exportOptions": {
+    //         "columns": [ 0, 1, 2, 3, 4, 5 ]
+    //       }
+    //     },
+    //     {
+    //       "extend":"print",
+    //       "messageTop": 'List of Available Items',
+    //       "exportOptions": {
+    //         "columns": [ 0, 1, 2, 3, 4, 5 ]
+    //       }
+    //     },
+    //     {
+    //       "extend":"colvis",
+          
+    //     }
+    // ]
+    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    })
+    $('#example3').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": false,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+
+<script>
+  $(window).load(function(){
+   var checkvalue= window.location.pathname;
+   //alert(checkvalue);
+   $("a").each(function(){
+    if($(this).attr('href')== checkvalue)
+    { $(this).addClass("active");}
+    });
+  });
+</script>

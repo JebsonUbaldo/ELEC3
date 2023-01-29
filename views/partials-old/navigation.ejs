@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-light  ">
+  <div class="container-fluid ">
+    <a class="navbar-brand text-muted fw-bold" href=""
+      ><img src="/images/logo.png" height="30" width="30" /> E-Care</a
+    >
+    <style>
+      .navbar{
+        background-color:rgb(247, 234, 218);
+        
+      }
+    </style>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse p-2" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active fw-bold" aria-current="page" href="#"
+            >HOME</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="/login">PRODUCTS</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle fw-bold"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            CATEGORIES
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%category.forEach(c => { %>
+            <li>
+              <a class="dropdown-item" href="#"><%= c.categoryname %></a>
+            </li>
+            <%});%>
+          </ul>
+        </li>
+      </ul>
+      <%if(typeof (locals.username) == "undefined"){ %>
+      <a
+        class="nav-link fw-bold text-decoration-none text-dark"
+        href="/login"
+        >Login <i class="fas fa-users"></i
+      ></a>
+
+      <%}else{%>
+      <a class="nav-link fw-bold text-decoration-none text-muted" href=""
+        >@<%= locals.username %></a
+      >
+      <a
+        class="nav-link fw-bold text-decoration-none text-danger"
+        href="/logout"
+        >Logout </a>
+
+      <% } %>
+    </div>
+  </div>
+</nav>

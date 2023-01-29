@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header') %> 
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  <%- include('../partials/navbar-admin') %> 
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+      <span class="brand-text font-weight-light">Solevivor Administrator</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-header">PRODUCT MANAGEMENT</li>
+          <li class="nav-item">
+            <a href="/products" class="nav-link">
+              <i class="nav-icon fas fa-cube"></i>
+              <p>Products</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/categories" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>Products Category</p>
+            </a>
+          </li>
+          <li class="nav-header">ORDER MANAGEMENT</li>
+          <li class="nav-item">
+            <a href="/orders-admin" class="nav-link">
+              <i class="nav-icon fas fa-shopping-cart"></i>
+              <p>Orders</p>
+            </a>
+          </li>
+          <li class="nav-header">USER MANAGEMENT</li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Users</p>
+            </a>
+          </li>
+          <li class="nav-header">ACCOUNT MANAGEMENT</li>
+          <li class="nav-item">
+            <a href="/user-profile" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>My Profile</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/logout" class="nav-link">
+              <i class="nav-icon fas fa-arrow-right"></i>
+            <p>Logout</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    </div>
+  </aside>
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Admin Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/adminIndex">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h3>
+                  <% countProduct.forEach(c=> { %>
+                    <%= c.count_product %>
+                  <% }); %>
+                </h3>
+                <p>Total Products</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-cube"></i>
+              </div>
+              <a href="/products" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>
+                  <% countCateg.forEach(b=> { %>
+                    <%= b.count_category %>
+                  <% }); %>
+                </h3>
+                <p>Total Products Category</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-columns"></i>
+              </div>
+              <a href="/categories" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>150</h3>
+                <p>Total Orders</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <a href="/orders-admin" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>
+                  <% countAcc.forEach(a=> { %>
+                    <%= a.count_account-1 %>
+                  <% }); %>
+                </h3>
+                <p>Total Users</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user"></i>
+              </div>
+              <a href="/users" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <h3 class="my-3">Orders Breakdown</h3>
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-primary"><i class="fas fa-shopping-cart"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Orders</span>
+                <span class="info-box-number">
+                  1              
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-success"><i class="fas fa-shopping-cart"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Approved Orders</span>
+                <span class="info-box-number">
+                  1              
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-warning"><i class="fas fa-shopping-cart"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Pending Orders</span>
+                <span class="info-box-number">
+                  2              
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="fas fa-shopping-cart"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Decline Orders</span>
+                <span class="info-box-number">
+                  1              
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <%- include('../partials/footer') %> 
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+</div>
+
+  <!-- Scripts -->
+  <%- include('../partials/scripts') %> 
+</body>
+</html>

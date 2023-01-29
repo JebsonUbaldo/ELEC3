@@ -1,0 +1,115 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand text-muted fw-bold" href=""
+      ><img src="/images/logo.png" height="30" width="30" /> E-Care</a
+    >
+
+    <style>
+      .navbar{
+        background-color:rgb(247, 234, 218);
+        
+      }
+    </style>
+
+
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse p-2" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active fw-bold" aria-current="page" href="/client"
+            >HOME</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="/products-client">PRODUCTS</a>
+        </li>
+        <li class="nav-item dropdown me-2">
+          <a
+            class="nav-link dropdown-toggle fw-bold"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            CATEGORIES
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%category.forEach(c => { %>
+            <li>
+              <a class="dropdown-item" href="/filterProduct/<%= c.categoryid %>"
+                ><%= c.categoryname %></a
+              >
+            </li>
+            <%});%>
+          </ul>
+        </li>
+        <form action="/search-products" method="POST" class="d-flex input-group w-auto me-5">
+          <input type="search" name="search" class="form-control rounded" placeholder="Search Product" aria-label="Search" aria-describedby="search-addon" />
+            <button class="btn btn-transparent fw-bold" type="submit" data-mdb-ripple-color="dark"> Search </button>
+        </form>
+
+        <li class="nav-item"></li>
+      </ul>
+      <%if(typeof (locals.userid) == "undefined"){ %>
+      <a
+        class="nav-link fw-bold text-decoration-none text-primary"
+        href="/login"
+        >Login</a
+      >
+      <a
+        class="nav-link fw-bold text-decoration-none text-danger"
+        href="/register"
+        >Register</a
+      >
+      <%}else{%>
+          
+      <a class="nav-link fw-bold text-decoration-none text-muted" href=""
+        >@<%= locals.username %></a
+      >
+
+      <div class="dropdown">
+        <a
+          class="dropdown-toggle d-flex align-items-center hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuAvatar"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="/images/default.png"
+            class="rounded-circle"
+            height="25"
+            alt="Black and White Portrait of a Man"
+            loading="lazy"
+          />
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="navbarDropdownMenuAvatar"
+        >
+          <li>
+            <a class="dropdown-item" href="/orders-client">Orders</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+
+      <% } %>
+    </div>
+  </div>
+</nav>

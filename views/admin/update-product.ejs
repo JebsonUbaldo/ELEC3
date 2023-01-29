@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header') %> 
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  <%- include('../partials/navbar-admin') %> 
+
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+      <span class="brand-text font-weight-light">Solevivor Administrator</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="/adminIndex" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-header">PRODUCT MANAGEMENT</li>
+          <li class="nav-item menu-open">
+            <a href="/products" class="nav-link active">
+              <i class="nav-icon fas fa-cube"></i>
+              <p>Products</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/categories" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>Products Category</p>
+            </a>
+          </li>
+          <li class="nav-header">ORDER MANAGEMENT</li>
+          <li class="nav-item">
+            <a href="/orders-admin" class="nav-link">
+              <i class="nav-icon fas fa-shopping-cart"></i>
+              <p>Orders</p>
+            </a>
+          </li>
+          <li class="nav-header">USER MANAGEMENT</li>
+          <li class="nav-item">
+            <a href="/users" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Users</p>
+            </a>
+          </li>
+          <li class="nav-header">ACCOUNT MANAGEMENT</li>
+          <li class="nav-item">
+            <a href="/user-profile" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>My Profile</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/logout" class="nav-link">
+              <i class="nav-icon fas fa-arrow-right"></i>
+            <p>Logout</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    </div>
+  </aside>
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Update Product</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="/products">Products</a></li>
+              <li class="breadcrumb-item active">Update Product</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+               <div class="card card-default">
+                  <div class="card-body mt-4">
+                    <form action="/updateProduct" method="POST">
+                      <% products.forEach(product => { %>
+                        <input type="hidden" name="id" value="<%= product.productid %>">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <input type="hidden" name="clone_name" value="<%= product.productname %>">
+                                    <label for="productname" class="form-label">Name</label>
+                                    <input type="text" id="productname" name="productname" class="form-control" placeholder="Product Name" value="<%= product.productname %>">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="category" class="form-label">Category</label>
+                                <select name="categoryid" class="form-select">
+                                    <option value="<%= product.categoryid %>" selected><%= product.categoryname %></option>
+                                    <% category.forEach(category => { %>
+                                        <option value="<%= category.categoryid  %>"><%= category.categoryname  %></option>
+                                    <% }); %>
+                                </select>
+                            </div>
+            
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="productprice" class="form-label">Price</label>
+                                    <input type="number" id="productprice" name="productprice" class="form-control" placeholder="Product Price" value="<%= product.productprice %>">
+                                  </div>
+                            </div>
+            
+                            <div class="col-md-12">
+                                <div>
+                                    <label for="productdesc">Description</label>
+                                    <textarea id="productdesc" name="productdesc" class="form-control" placeholder="Product Description" id="productdesc" style="height:150px"><%= product.productdesc %></textarea>
+                                  </div>
+                            </div>
+                        </div>   
+                      <% }); %>   
+                    
+                    <div class="mt-4">
+                      <button type="submit" class="btn btn-success">Update Product</button>
+                      <a href="/products" class="btn btn-secondary">Cancel</a>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <%- include('../partials/footer') %> 
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+</div>
+
+  <!-- Scripts -->
+  <%- include('../partials/scripts') %> 
+</body>
+</html>
